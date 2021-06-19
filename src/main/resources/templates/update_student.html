@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="#">Student Management System</a>
+	  <!-- Toggler/collapsibe Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/students}">Student Management</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class= "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Update Student</h1>
+				<div class = "card-body">
+					<form id="createForm" th:action="@{/students/{id}(id=${student.id})}" th:object="${student}" method="POST">
+						<div class = "form-group">
+							<label> Student First Name</label>
+							<input 
+							type = "text"
+							name = "firstName"
+							th:field = "*{firstName}"
+							class = "form-control"
+							placeholder = "Enter Student First Name"
+							>
+						</div>
+						
+						<div class = "form-group">
+							<label> Student Last Name</label>
+							<input 
+							type = "text"
+							name = "lastName"
+							th:field = "*{lastName}"
+							class = "form-control"
+							placeholder = "Enter Student First Name"
+							>
+						</div>
+						
+						<div class = "form-group">
+							<label> Student Email</label>
+							<input 
+							type = "text"
+							name = "email"
+							th:field = "*{email}"
+							class = "form-control"
+							placeholder = "Enter Student First Name"
+							>
+						</div>
+						
+						<div class = "footer-body">
+							<label id="errorMessages"> </label>
+							<br>
+							<button type="submit" class = "btn btn-primary"> Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+document.getElementById("createForm").onsubmit = function () {
+	console.log("In check form submit button");
+	var sErrorMsg = "";
+	
+    if (!document.getElementById("firstName").value) {
+    	sErrorMsg = "Firt Name field is not be empty";
+    	document.getElementById("errorMessages").innerHTML = sErrorMsg;
+        return false;
+    }
+    return true;
+}
+
+
+
+
+</script>
+</body>
+</html>
