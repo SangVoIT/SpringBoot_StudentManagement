@@ -32,7 +32,10 @@
 			<div class= "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class = "text-center"> Update Student</h1>
 				<div class = "card-body">
-					<form id="createForm" th:action="@{/students/{id}(id=${student.id})}" th:object="${student}" method="POST">
+					<form id="createForm" th:action="@{/students/{id}(id=${student.id})}" 
+					th:object="${student}" method="POST"
+					enctype="multipart/form-data"
+					>
 						<div class = "form-group">
 							<label> Student First Name</label>
 							<input 
@@ -64,6 +67,14 @@
 							class = "form-control"
 							placeholder = "Enter Student First Name"
 							>
+						</div>
+						
+						<div class = "form-group">
+							<label> Avatar </label>
+							<input 
+							type ="file" 
+							name = "avatar"
+							accept="image/png, image/jpeg"> 
 						</div>
 						
 						<div class = "footer-body">

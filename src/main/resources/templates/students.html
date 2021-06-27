@@ -42,6 +42,7 @@
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Avatar</th>
 					<th>Email</th>
 					<th>Action</th>
 				</tr>
@@ -50,6 +51,9 @@
 				<tr th:each="student: ${students}">
 					<td th:text="${student.firstName}"></td>
 					<td th:text="${student.lastName}"></td>
+					<td>
+						<img alt="Image Not Found" th:src="${student.getAvatarImage}">
+					</td>
 					<td th:text="${student.email}"></td>
 					<td>
 					<a th:href = "@{/students/edit/{id}(id=${student.id})}" class = "btn btn-primary">Update</a>

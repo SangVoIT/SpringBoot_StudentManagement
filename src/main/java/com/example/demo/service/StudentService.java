@@ -13,9 +13,9 @@ import com.example.demo.entity.Student;
 public interface StudentService {
 	List<Student> getAllStudents();
 	
-	int saveStudent(Student student);
+	Student saveStudent(Student student);
 	
-	int updateStudent(Student student);
+	Student updateStudent(Student student);
 	
 	int checkExistingStudent(long id);
 	

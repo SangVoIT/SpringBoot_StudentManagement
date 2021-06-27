@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.beans.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,14 +26,18 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(nullable = true, length = 64)
+	private String photo;
+	
 	public Student() {
 		
 	}
-	public Student(String firstName, String lastName, String email) {
+	public Student(String firstName, String lastName, String email, String photo) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.photo = photo;
 	}
 	
 	public Long getId() {
@@ -58,4 +64,23 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	@Transient
+	public String getAvatarImage() {
+		if (photo == null || id == null) {
+			return null;
+		}
+			
+		System.out.println("getAvatarImage: " + "/user-photos/" + id + "/" + photo );
+		return "/user-photos/" + id + "/" + photo;
+		
+	}
+	
 }

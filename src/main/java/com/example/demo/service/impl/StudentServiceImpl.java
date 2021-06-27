@@ -29,28 +29,22 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public int saveStudent(Student student) {
-		int iResult = -1;
+	public Student saveStudent(Student student) {
 		try {
 			// Check existing data
 			if (student.getId() != null && checkExistingStudent(student.getId()) == 1) {
-				return iResult;
+				return null;
 			}
 			
 			//  Insert data
-			studentRepository.save(student);
-			iResult = 1;
+			return studentRepository.save(student);
 		} catch (Exception e) {
-			// TODO: handle exception
-			iResult = -1;
+			return null;
 		}
-		return iResult;
 	}
 
 	@Override
-	public int updateStudent(Student student) {
-		// TODO Auto-generated method stub
-		int iResult = -1;
+	public Student updateStudent(Student student) {
 		try {
 			Student objOldStudent = studentRepository.getById(student.getId());
 			
@@ -58,14 +52,12 @@ public class StudentServiceImpl implements StudentService{
 			objOldStudent.setFirstName(student.getFirstName());
 			objOldStudent.setLastName(student.getLastName());
 			objOldStudent.setEmail(student.getEmail());
+			objOldStudent.setPhoto(student.getPhoto());
 			
-			studentRepository.save(objOldStudent);
-			iResult = 1;
+			return studentRepository.save(objOldStudent);
 		} catch (Exception e) {
-			iResult = -1;
-			// TODO: handle exception
+			return null;
 		}
-		return iResult;
 	}
 
 	/*
