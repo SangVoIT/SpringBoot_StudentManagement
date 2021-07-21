@@ -27,44 +27,54 @@
 	    </ul>
 	  </div>
 	</nav>
-
 	<div class="container">
 		<div class="row">
 			<div class= "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1 class = "text-center"> Create New Student</h1>
+				<h1 class = "text-center"> Update Student</h1>
 				<div class = "card-body">
-					<form id="createForm" th:action="@{/signup}" 
-						th:object="${signupForm}" method="POST">
+					<form id="createForm" th:action="@{/students/{id}(id=${student.id})}" 
+					th:object="${student}" method="POST"
+					enctype="multipart/form-data"
+					>
 						<div class = "form-group">
-							<label> User name</label>
+							<label> Student First Name</label>
 							<input 
 							type = "text"
-							name = "name"
-							th:field = "*{name}"
+							name = "firstName"
+							th:field = "*{firstName}"
 							class = "form-control"
-							placeholder = "Enter User Name"
+							placeholder = "Enter Student First Name"
 							>
 						</div>
 						
 						<div class = "form-group">
-							<label> Email (login account): </label>
+							<label> Student Last Name</label>
+							<input 
+							type = "text"
+							name = "lastName"
+							th:field = "*{lastName}"
+							class = "form-control"
+							placeholder = "Enter Student First Name"
+							>
+						</div>
+						
+						<div class = "form-group">
+							<label> Student Email</label>
 							<input 
 							type = "text"
 							name = "email"
 							th:field = "*{email}"
 							class = "form-control"
-							placeholder = "Enter Login Account"
+							placeholder = "Enter Student First Name"
 							>
 						</div>
 						
 						<div class = "form-group">
-							<label> Input password: </label>
+							<label> Avatar </label>
 							<input 
-							type = "password"
-							name = "password"
-							th:field = "*{password}"
-							class = "form-control"
-							>
+							type ="file" 
+							name = "avatar"
+							accept="image/png, image/jpeg"> 
 						</div>
 						
 						<div class = "footer-body">

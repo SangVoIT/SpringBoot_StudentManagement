@@ -33,29 +33,31 @@
 		</div>
 		<div class = "row">
 			<div class = "col-lg-3">
-				<a th:href = "@{/account/new}" class = "btn btn-primary btn-sm mb-3"> Add New Student </a>
+				<a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add New Student </a>
 			</div>
 		</div>
 		
 		<table class="table table-striped table-bordered">
 			<thead class="thead-dark">
 				<tr>
-					<th>Name</th>
-					<th>Login Account</th>
-					<th>roles</th>
-					<th>Status</th>
-					<th></th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Avatar</th>
+					<th>Email</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="user: ${users}">
-					<td th:text="${user.name}"></td>
-					<td th:text="${user.email}"></td>
-					<td th:text="${user.roles}"></td>
-					<td th:text="${user.enable}"></td>
+				<tr th:each="student: ${students}">
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
 					<td>
-					<a th:href = "@{/students/edit/{id}(id=${user.email})}" class = "btn btn-primary">Update</a>
-					<a th:href = "@{/students/delete/{id}(id=${user.email})}" class = "btn btn-danger">Delete</a>
+						<img alt="Image Not Found" th:src="${student.getAvatarImage}">
+					</td>
+					<td th:text="${student.email}"></td>
+					<td>
+					<a th:href = "@{/students/edit/{id}(id=${student.id})}" class = "btn btn-primary">Update</a>
+					<a th:href = "@{/students/delete/{id}(id=${student.id})}" class = "btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>

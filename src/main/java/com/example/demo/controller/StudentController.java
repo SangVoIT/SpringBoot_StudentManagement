@@ -24,7 +24,7 @@ import com.example.demo.utility.FileUploadUtility;
  * @author SANG VO
  */
 @Controller
-@RequestMapping("/studentszzz")
+@RequestMapping("/students")
 public class StudentController {
 	private StudentService studentService; 
     private static final Logger logger = LoggerFactory.getLogger("StudentController.class");

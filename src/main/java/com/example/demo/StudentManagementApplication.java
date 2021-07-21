@@ -4,18 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.FilesStorageService;
-
-import lombok.extern.slf4j.Slf4j;
 
 /***
  * Spring Boot Main Entry
  * @author SANGVO
  *
  */
-@Slf4j
 @SpringBootApplication
 public class StudentManagementApplication implements CommandLineRunner{
 
@@ -26,13 +25,13 @@ public class StudentManagementApplication implements CommandLineRunner{
 	@Autowired
 	private StudentRepository studentRepository; 
 
-	@Autowired	
+	@Autowired
 	private FilesStorageService storageService; 
 	
 	@Override
 	public void run(String... args) throws Exception {
 
-		log.info("0: StudentManagementApplication; run CommandLineRunner");
+		System.out.println("0: StudentManagementApplication; run CommandLineRunner");
 //		When startup, some new student will be created
 		
 		// 1_ Create new object for list Data, testing
@@ -55,13 +54,6 @@ public class StudentManagementApplication implements CommandLineRunner{
 		// 3_Base64Image testing
 //		RestfulClient restfulClient = new RestfulClient();
 //		restfulClient.postEntity();
-		
-		
-		// 4 Spring Security TESTING
-//		RestfulClient_Security restSecurity = new RestfulClient_Security(); 
-//		restSecurity.postEntity();
-		// restSecurity.getEntity();
-		
 		
 	}
 

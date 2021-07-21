@@ -9,19 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Table(name="students")
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name="students")
 public class Student {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -38,11 +29,46 @@ public class Student {
 	@Column(nullable = true, length = 64)
 	private String photo;
 	
+	public Student() {
+		
+	}
 	public Student(String firstName, String lastName, String email, String photo) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.photo = photo;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 	
@@ -52,7 +78,7 @@ public class Student {
 			return null;
 		}
 			
-		log.info("getAvatarImage: " + "/user-photos/" + id + "/" + photo );
+		System.out.println("getAvatarImage: " + "/user-photos/" + id + "/" + photo );
 		return "/user-photos/" + id + "/" + photo;
 		
 	}
