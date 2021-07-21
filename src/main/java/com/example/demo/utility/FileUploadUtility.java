@@ -24,6 +24,11 @@ public class FileUploadUtility {
 	 * @throws IOException
 	 */
 	public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
+		// ファイル名チェックする
+		if (fileName.isEmpty()) {
+			return;
+		}
+		
 		Path uploadPath = Paths.get(uploadDir);
 		
 		// Create upload folder if not existing

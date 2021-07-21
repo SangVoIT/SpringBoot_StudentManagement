@@ -1,9 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.controller.admin;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,21 +18,20 @@ import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 import com.example.demo.utility.FileUploadUtility;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * SANGVO 20210619 Student Management System
  * @author SANG VO
  */
+@Slf4j
 @Controller
-@RequestMapping("/studentszzz")
-public class StudentController {
-	private StudentService studentService; 
-    private static final Logger logger = LoggerFactory.getLogger("StudentController.class");
+@RequestMapping("/admin/students")
+public class AD_StudentController {
 	
-	public StudentController(StudentService studentService) {
-		super();
-		this.studentService = studentService;
-	}
-
+	@Autowired
+	private StudentService studentService; 
+	
 	// -----------------------------------------------------------------------------------
 	// GET URL MappingHandle AREA 
 	// -----------------------------------------------------------------------------------
@@ -44,9 +42,9 @@ public class StudentController {
 	 */
 	@RequestMapping()
 	public String listStudents(Model model) {
-        logger.info("/students");
+        log.info("/students");
 		model.addAttribute("students", studentService.getAllStudents());
-		return "students";
+		return "admin/student/students";
 	}
 	
 	/**
@@ -58,7 +56,7 @@ public class StudentController {
 	public String createStudentForm(Model model) {
 		Student student = new Student();
 		model.addAttribute("student", student);
-		return "create_student";
+		return "admin/student/create_student";
     }
 
 	/**
@@ -70,18 +68,19 @@ public class StudentController {
 	@GetMapping("/edit/{id}")
 	public String updateStudentForm(@PathVariable Long id, Model model) {
 		model.addAttribute("student", studentService.getStudentById(id));
-		return "update_student";
+		return "admin/student/update_student";
     }
 	
 	/**
 	 * Delete an existing student
 	 * @param id: deleted student id
 	 * @return
+	 * 
 	 */
 	@GetMapping("/delete/{id}")
 	public String deleteStudentForm(@PathVariable Long id) {
 		studentService.deleteStudent(id);
-		return "redirect:/students";
+		return "redirect:/admin/students";
     }
 
 	// -----------------------------------------------------------------------------------
@@ -108,7 +107,7 @@ public class StudentController {
 		
 		FileUploadUtility.saveFile(uploadDir, fileName, multipartFile);
 		
-		return "redirect:/students";
+		return "redirect:/admin/students";
     }
 
 	/**
@@ -132,7 +131,7 @@ public class StudentController {
 		System.out.println("uploadDir: " + uploadDir + "; fileName: " + fileName);
 		FileUploadUtility.saveFile(uploadDir, fileName, multipartFile);
 		
-		return "redirect:/students";
+		return "redirect:/admin/students";
     }
 	
 

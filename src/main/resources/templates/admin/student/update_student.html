@@ -22,21 +22,20 @@
 	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 	    <ul class="navbar-nav">
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/students}">Student Management</a>
+	        <a class="nav-link" th:href="@{/admin/students}">Student Management</a>
 	      </li>
 	    </ul>
 	  </div>
 	</nav>
-
 	<div class="container">
 		<div class="row">
 			<div class= "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1 class = "text-center"> Create New Student</h1>
+				<h1 class = "text-center"> Update Student</h1>
 				<div class = "card-body">
-					<form id="createForm" th:action="@{/students}" 
-						th:object="${student}" method="POST"
-						enctype="multipart/form-data"
-						>
+					<form id="createForm" th:action="@{/admin/students/{id}(id=${student.id})}" 
+					th:object="${student}" method="POST"
+					enctype="multipart/form-data"
+					>
 						<div class = "form-group">
 							<label> Student First Name</label>
 							<input 
@@ -100,9 +99,6 @@ document.getElementById("createForm").onsubmit = function () {
     }
     return true;
 }
-
-
-
 
 </script>
 </body>

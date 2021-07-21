@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="#">Student Management System</a>
+	  <!-- Toggler/collapsibe Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/students}">Student Management</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<h1>List Student</h1>
+		</div>
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/account/new}" class = "btn btn-primary btn-sm mb-3"> Add New Student </a>
+			</div>
+		</div>
+		
+		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+		  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" th:href="@{/}" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+		  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" th:href="@{/order/list}" role="tab" aria-controls="v-pills-profile" aria-selected="false">Courses</a>
+		  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" th:href="@{/notifications}" role="tab" aria-controls="v-pills-profile" aria-selected="false">Notifications</a>
+		  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" th:href="@{/messages}" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+		  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" th:href="@{/settings}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+		</div>
+		<div class="tab-content" id="v-pills-tabContent">
+			<h1>Welcome to user page</h1>
+		</div>
+	</div>
+</body>
+</html>

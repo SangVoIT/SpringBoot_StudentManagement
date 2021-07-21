@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.client;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -6,11 +6,14 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.entity.Image;
 import com.example.demo.utility.Base64ImageUtility;
 
+import lombok.extern.slf4j.Slf4j;
+
 /***
  * Create REST request Client 
  * @author SANGVO
  *
  */
+@Slf4j
 public class RestfulClient {
 	
 	final private String urlPattern = "http://localhost:8080/Images/";
@@ -26,7 +29,7 @@ public class RestfulClient {
 	/* Setting for POST entity */
 	/* ------------------ */
 	public void postEntity() {
-		System.out.println("1_RestfulClient: Begin /POST request!");
+		log.info("1_RestfulClient: Begin /POST request!");
 		try {
 			String postUrl = urlPattern + "post";
 			String name = "demoImage.png";
@@ -36,18 +39,18 @@ public class RestfulClient {
 			Image imageSending = new Image(name, data);
 			ResponseEntity<String> postResponse = restTemplate.postForEntity(postUrl, imageSending, String.class);
 	
-			System.out.println("Response for POST request: " + postResponse.getBody());
+			log.info("Response for POST request: " + postResponse.getBody());
 		} catch (Exception e) {
-			System.out.println("1_RestfulClient(postEntity): " + e.toString());
+			log.info("1_RestfulClient(postEntity): " + e.toString());
 		}
-		System.out.println("1_RestfulClient: End /POST request!");
+		log.info("1_RestfulClient: End /POST request!");
 	} 
 
 	/* ------------------ */
 	/* Setting for GET entity */
 	/* ------------------ */
 	public void getEntity() {
-		System.out.println("1_RestfulClient: Begin /GET request!");
+		log.info("1_RestfulClient: Begin /GET request!");
 		try {
 			String getUrl = urlPattern + "get?name=demoImage.png";
 			
@@ -56,18 +59,18 @@ public class RestfulClient {
 			if (getResponse.getBody() != null) {
 				Image image = getResponse.getBody();
 				
-				System.out.println("Response for GET request:" + image.toString());
+				log.info("Response for GET request:" + image.toString());
 				
 				// save requested Image to C driver
-				System.out.println("Save image to C:\\spring_test\\client");
+				log.info("Save image to C:\\spring_test\\client");
 				
 				Base64ImageUtility.decoder(image.getData(), "C:\\spring_test\\client\\" + image.getName());
 			}
 			
 		} catch (Exception e) {
-			System.out.println("1_RestfulClient(postEntity): " + e.toString());
+			log.info("1_RestfulClient(postEntity): " + e.toString());
 		}
-		System.out.println("1_RestfulClient: End /GET request!");
+		log.info("1_RestfulClient: End /GET request!");
 	}
 	
 }
