@@ -56,11 +56,11 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter{
 		log.debug("WebSercurityConfig: configure(HttpSecurity http) @Override");
 		http
 			.authorizeRequests()
-				// "/", "/signup": is permit for all request 
+				// "/", "/signup": is permit for all request
 		      	// トップページとアカウント登録処理はだれでもアクセスできる
-				.antMatchers("/home/**", "/signup").permitAll()
+				// .antMatchers("/home/**", "/signup").permitAll()
 				// .antMatchers("/", "/signup", "/students/**").permitAll()
-				// .antMatchers("/**").permitAll()
+				.antMatchers("/**").permitAll()
 				
 				// all request /members/user/** has USER role
 			    // /members/user/**ページは、USERロールを持つ認証ユーザーがアクセスできる
@@ -91,8 +91,8 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter{
 				
 				// #defaultSuccessUrl: The default success url
 				// alwaysUse: true if the defaultSuccessUrl should be used after authentication despite if a protected page had be visited
-				// .defaultSuccessUrl("/", true)
-				// .defaultSuccessUrl("/home", true)
+				.defaultSuccessUrl("/", true)
+				.defaultSuccessUrl("/home", true)
 				.successHandler(myAuthenticationSuccessHandler())
 
 				.failureForwardUrl("/login?error")
